@@ -1,6 +1,15 @@
+import Image from "next/image";
 import React from "react";
-
-const FeaturedProject = () => {
+async function getData() {
+  const response = await fetch(process.env.BASE_URL + "api/FeaturedProject");
+  if (!response.ok) {
+    throw new Error("Error in FeaturedProject");
+  }
+  return response.json();
+}
+const FeaturedProject = async () => {
+  const data = await getData();
+  console.log(data);
   return (
     <>
       <section>
@@ -10,7 +19,7 @@ const FeaturedProject = () => {
               <div className="mb-12 lg:mb-0 w-full lg:w-1/2 flex px-4">
                 <div className="max-w-md">
                   <span className="text-green-600 font-bold">
-                    Dolor sit amet consectutar
+                    FeaturedProject
                   </span>
                   <h2 className="mb-6 text-4xl lg:text-5xl font-bold font-heading">
                     Build &amp; Launch without problems
@@ -30,35 +39,52 @@ const FeaturedProject = () => {
               </div>
               <div className="w-full lg:w-1/2">
                 <div className="mb-4 flex flex-wrap items-end">
-                  <div className="mb-4 lg:mb-0 w-full lg:w-2/3 px-3">
-                    <img
-                      className="w-full h-32 lg:h-48 object-cover rounded"
-                      src="https://images.unsplash.com/photo-1604701145653-ab3c97c63467?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80"
-                      alt=""
-                    />
+                  <div className=" mb-4 lg:mb-0 w-full lg:w-2/3 px-3">
+                    <div className="relative w-full h-32 lg:h-48 object-cover rounded">
+                      {" "}
+                      <Image
+                        className=""
+                        src={data["0"]["image"]}
+                        fill={true}
+                        objectFit="cover"
+                        alt=""
+                      />
+                    </div>
                   </div>
                   <div className="w-full lg:w-1/3 px-3">
-                    <img
-                      className="w-full h-32 object-cover rounded"
-                      src="https://images.unsplash.com/photo-1521581171443-58a6b508b9ac?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80"
-                      alt=""
-                    />
+                    <div className="relative w-full h-32 ">
+                      <Image
+                        className="object-cover rounded"
+                        src={data["1"]["image"]}
+                        fill={true}
+                        objectFit="cover"
+                        alt=""
+                      />
+                    </div>
                   </div>
                 </div>
                 <div className="flex flex-wrap items-start">
                   <div className="mb-4 lg:mb-0 w-full lg:w-1/3 px-3">
-                    <img
-                      className="w-full h-32 object-cover rounded"
-                      src="https://images.unsplash.com/photo-1501706649056-3cb79cccec52?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=701&q=80"
-                      alt=""
-                    />
+                    <div className="relative w-full h-32">
+                      <Image
+                        className=" object-cover rounded"
+                        src={data["2"]["image"]}
+                        fill={true}
+                        objectFit="cover"
+                        alt=""
+                      />
+                    </div>
                   </div>
                   <div className="w-full lg:w-2/3 px-3">
-                    <img
-                      className="w-full h-32 lg:h-48 object-cover rounded"
-                      src="https://images.unsplash.com/photo-1489058535093-8f530d789c3b?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80"
-                      alt=""
-                    />
+                    <div className="relative w-full h-32 lg:h-48">
+                      <Image
+                        className="  object-cover rounded"
+                        src={data["3"]["image"]}
+                        fill={true}
+                        objectFit="cover"
+                        alt=""
+                      />
+                    </div>
                   </div>
                 </div>
               </div>
