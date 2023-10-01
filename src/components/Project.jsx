@@ -1,3 +1,4 @@
+import GetMomentTime from "@/utlis/getMomentTime";
 import Image from "next/image";
 import React from "react";
 
@@ -53,7 +54,13 @@ const Project = async () => {
                       </div>
 
                       <div className="p-6">
-                        <span className="text-gray-400">2021</span>
+                        <span className="text-gray-400">
+                          {" "}
+                          <GetMomentTime
+                            time={item["updated_at"]}
+                            format="YYYY"
+                          />
+                        </span>
                         <h3 className="mb-4 text-2xl font-bold font-heading">
                           {item["title"]}
                         </h3>
