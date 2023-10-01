@@ -1,6 +1,15 @@
+import Image from "next/image";
 import React from "react";
 
-const Project = () => {
+async function getData() {
+  const response = await fetch(process.env.BASE_URL + "api/AllProject");
+  if (!response.ok) {
+    throw new Error("Error in BrandList");
+  }
+  return response.json();
+}
+const Project = async () => {
+  const data = await getData();
   return (
     <>
       <section>
@@ -23,204 +32,54 @@ const Project = () => {
               </a>
             </div>
             <div className="flex flex-wrap -mx-4 mb-4">
-              <div className="mb-8 w-full md:w-1/2 lg:w-1/3 px-4">
-                <div className="bg-white rounded">
-                  <img
-                    className="rounded-t object-cover h-128"
-                    src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1050&q=80"
-                    alt=""
-                  />
-                  <div className="p-6">
-                    <span className="text-gray-400">2021</span>
-                    <h3 className="mb-4 text-2xl font-bold font-heading">
-                      Lorem ipsum dolor sit amet consectutar
-                    </h3>
-                    <a
-                      className="flex text-green-600 hover:text-green-700 font-bold"
-                      href="#"
-                    >
-                      <svg
-                        className="mr-3 w-6 h-6"
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 20 20"
-                        fill="currentColor"
-                      >
-                        <path
-                          fillRule="evenodd"
-                          d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 1.414L10.586 9H7a1 1 0 100 2h3.586l-1.293 1.293a1 1 0 101.414 1.414l3-3a1 1 0 000-1.414z"
-                          clipRule="evenodd"
+              {data.map((item) => {
+                return (
+                  <div
+                    key={item.id}
+                    className="mb-8 w-full md:w-1/2 lg:w-1/3 px-4"
+                  >
+                    <div className="bg-white rounded">
+                      <div className="relative h-96 w-full">
+                        <Image
+                          className="rounded-t object-cover "
+                          src={item["image"]}
+                          fill={true}
+                          objectFit="cover"
+                          alt=""
                         />
-                      </svg>
-                      <span>View Case Study</span>
-                    </a>
+                        <span className="px-3 py-2 bg-green-600 rounded-bl-lg capitalize text-white font-medium text-xl absolute top-0 right-0">
+                          {item["remark"]}
+                        </span>
+                      </div>
+
+                      <div className="p-6">
+                        <span className="text-gray-400">2021</span>
+                        <h3 className="mb-4 text-2xl font-bold font-heading">
+                          {item["title"]}
+                        </h3>
+                        <a
+                          className="flex text-green-600 hover:text-green-700 font-bold"
+                          href={item["live"]}
+                        >
+                          <svg
+                            className="mr-3 w-6 h-6"
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 20 20"
+                            fill="currentColor"
+                          >
+                            <path
+                              fillRule="evenodd"
+                              d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 1.414L10.586 9H7a1 1 0 100 2h3.586l-1.293 1.293a1 1 0 101.414 1.414l3-3a1 1 0 000-1.414z"
+                              clipRule="evenodd"
+                            />
+                          </svg>
+                          <span>View Case Study</span>
+                        </a>
+                      </div>
+                    </div>
                   </div>
-                </div>
-              </div>
-              <div className="mb-8 w-full md:w-1/2 lg:w-1/3 px-4">
-                <div className="bg-white rounded">
-                  <img
-                    className="rounded-t object-cover h-128"
-                    src="https://images.unsplash.com/photo-1454496522488-7a8e488e8606?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1055&q=80"
-                    alt=""
-                  />
-                  <div className="p-6">
-                    <span className="text-gray-400">2021</span>
-                    <h3 className="mb-4 text-2xl font-bold font-heading">
-                      Curabitur imperdiet feugiat cursus
-                    </h3>
-                    <a
-                      className="flex text-green-600 hover:text-green-700 font-bold"
-                      href="#"
-                    >
-                      <svg
-                        className="mr-3 w-6 h-6"
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 20 20"
-                        fill="currentColor"
-                      >
-                        <path
-                          fillRule="evenodd"
-                          d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 1.414L10.586 9H7a1 1 0 100 2h3.586l-1.293 1.293a1 1 0 101.414 1.414l3-3a1 1 0 000-1.414z"
-                          clipRule="evenodd"
-                        />
-                      </svg>
-                      <span>View Case Study</span>
-                    </a>
-                  </div>
-                </div>
-              </div>
-              <div className="mb-8 w-full md:w-1/2 lg:w-1/3 px-4">
-                <div className="bg-white rounded">
-                  <img
-                    className="rounded-t object-cover h-128"
-                    src="https://images.unsplash.com/photo-1518098268026-4e89f1a2cd8e?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=968&q=80"
-                    alt=""
-                  />
-                  <div className="p-6">
-                    <span className="text-gray-400">2021</span>
-                    <h3 className="mb-4 text-2xl font-bold font-heading">
-                      Nullam imperdiet lorem at accumsan interdum
-                    </h3>
-                    <a
-                      className="flex text-green-600 hover:text-green-700 font-bold"
-                      href="#"
-                    >
-                      <svg
-                        className="mr-3 w-6 h-6"
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 20 20"
-                        fill="currentColor"
-                      >
-                        <path
-                          fillRule="evenodd"
-                          d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 1.414L10.586 9H7a1 1 0 100 2h3.586l-1.293 1.293a1 1 0 101.414 1.414l3-3a1 1 0 000-1.414z"
-                          clipRule="evenodd"
-                        />
-                      </svg>
-                      <span>View Case Study</span>
-                    </a>
-                  </div>
-                </div>
-              </div>
-              <div className="mb-8 w-full md:w-1/2 lg:w-1/3 px-4">
-                <div className="bg-white rounded">
-                  <img
-                    className="rounded-t object-cover h-128"
-                    src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1050&q=80"
-                    alt=""
-                  />
-                  <div className="p-6">
-                    <span className="text-gray-400">2021</span>
-                    <h3 className="mb-4 text-2xl font-bold font-heading">
-                      Lorem ipsum dolor sit amet consectutar
-                    </h3>
-                    <a
-                      className="flex text-green-600 hover:text-green-700 font-bold"
-                      href="#"
-                    >
-                      <svg
-                        className="mr-3 w-6 h-6"
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 20 20"
-                        fill="currentColor"
-                      >
-                        <path
-                          fillRule="evenodd"
-                          d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 1.414L10.586 9H7a1 1 0 100 2h3.586l-1.293 1.293a1 1 0 101.414 1.414l3-3a1 1 0 000-1.414z"
-                          clipRule="evenodd"
-                        />
-                      </svg>
-                      <span>View Case Study</span>
-                    </a>
-                  </div>
-                </div>
-              </div>
-              <div className="mb-8 w-full md:w-1/2 lg:w-1/3 px-4">
-                <div className="bg-white rounded">
-                  <img
-                    className="rounded-t object-cover h-128"
-                    src="https://images.unsplash.com/photo-1454496522488-7a8e488e8606?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1055&q=80"
-                    alt=""
-                  />
-                  <div className="p-6">
-                    <span className="text-gray-400">2021</span>
-                    <h3 className="mb-4 text-2xl font-bold font-heading">
-                      Curabitur imperdiet feugiat cursus
-                    </h3>
-                    <a
-                      className="flex text-green-600 hover:text-green-700 font-bold"
-                      href="#"
-                    >
-                      <svg
-                        className="mr-3 w-6 h-6"
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 20 20"
-                        fill="currentColor"
-                      >
-                        <path
-                          fillRule="evenodd"
-                          d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 1.414L10.586 9H7a1 1 0 100 2h3.586l-1.293 1.293a1 1 0 101.414 1.414l3-3a1 1 0 000-1.414z"
-                          clipRule="evenodd"
-                        />
-                      </svg>
-                      <span>View Case Study</span>
-                    </a>
-                  </div>
-                </div>
-              </div>
-              <div className="mb-8 w-full md:w-1/2 lg:w-1/3 px-4">
-                <div className="bg-white rounded">
-                  <img
-                    className="rounded-t object-cover h-128"
-                    src="https://images.unsplash.com/photo-1518098268026-4e89f1a2cd8e?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=968&q=80"
-                    alt=""
-                  />
-                  <div className="p-6">
-                    <span className="text-gray-400">2021</span>
-                    <h3 className="mb-4 text-2xl font-bold font-heading">
-                      Nullam imperdiet lorem at accumsan interdum
-                    </h3>
-                    <a
-                      className="flex text-green-600 hover:text-green-700 font-bold"
-                      href="#"
-                    >
-                      <svg
-                        className="mr-3 w-6 h-6"
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 20 20"
-                        fill="currentColor"
-                      >
-                        <path
-                          fillRule="evenodd"
-                          d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 1.414L10.586 9H7a1 1 0 100 2h3.586l-1.293 1.293a1 1 0 101.414 1.414l3-3a1 1 0 000-1.414z"
-                          clipRule="evenodd"
-                        />
-                      </svg>
-                      <span>View Case Study</span>
-                    </a>
-                  </div>
-                </div>
-              </div>
+                );
+              })}
             </div>
             <div className="text-center">
               <a

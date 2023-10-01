@@ -1,6 +1,9 @@
+"use client";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 function Header() {
+  const pathName = usePathname();
   return (
     <section className="relative bg-white ">
       <div className="container mx-auto">
@@ -16,7 +19,11 @@ function Header() {
           <ul className="hidden absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2 lg:flex lg:mx-auto  lg:items-center lg:w-auto lg:space-x-6">
             <li>
               <Link
-                className="text-sm text-gray-400 hover:text-gray-500"
+                className={`${
+                  pathName === "/"
+                    ? "text-green-600 hover:text-gray-500 font-bold"
+                    : "text-gray-400 hover:text-gray-500"
+                } text-sm `}
                 href="/"
               >
                 Home
@@ -39,7 +46,14 @@ function Header() {
               </svg>
             </li>
             <li>
-              <Link className="text-sm text-green-600 font-bold" href="/team">
+              <Link
+                className={`${
+                  pathName === "/team"
+                    ? "text-green-600 hover:text-gray-500 font-bold"
+                    : "text-gray-400 hover:text-gray-500"
+                } text-sm `}
+                href="/team"
+              >
                 Team
               </Link>
             </li>
@@ -61,7 +75,11 @@ function Header() {
             </li>
             <li>
               <Link
-                className="text-sm text-gray-400 hover:text-gray-500"
+                className={`${
+                  pathName === "/service"
+                    ? "text-green-600 hover:text-gray-500 font-bold"
+                    : "text-gray-400 hover:text-gray-500"
+                } text-sm `}
                 href="/service"
               >
                 Service
@@ -85,7 +103,11 @@ function Header() {
             </li>
             <li>
               <Link
-                className="text-sm text-gray-400 hover:text-gray-500"
+                className={`${
+                  pathName === "/project"
+                    ? "text-green-600 hover:text-gray-500 font-bold"
+                    : "text-gray-400 hover:text-gray-500"
+                } text-sm `}
                 href="/project"
               >
                 Project
@@ -109,7 +131,11 @@ function Header() {
             </li>
             <li>
               <Link
-                className="text-sm text-gray-400 hover:text-gray-500"
+                className={`${
+                  pathName === "/testimonial"
+                    ? "text-green-600 hover:text-gray-500 font-bold"
+                    : "text-gray-400 hover:text-gray-500"
+                } text-sm `}
                 href="/testimonial"
               >
                 Testimonials
