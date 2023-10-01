@@ -9,7 +9,6 @@ async function getData() {
 }
 const FeaturedProject = async () => {
   const data = await getData();
-  console.log(data);
   return (
     <>
       <section>

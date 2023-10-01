@@ -9,7 +9,6 @@ async function getData() {
 }
 const TeamList = async () => {
   const data = await getData();
-  console.log(data);
   return (
     <>
       <section>

@@ -1,6 +1,21 @@
-import React from "react";
+"use client";
+import React, { useState } from "react";
+import toast, { Toaster } from "react-hot-toast";
 
 function Subscribe() {
+  const [email, setEmail] = useState("");
+  const handleClick = async (e) => {
+    e.preventDefault();
+    if (!email.length) {
+      toast.error("Email is not valid");
+      return;
+    }
+    const res = await fetch("/api/subscribe", { method: "POST" });
+    if (!res.ok) {
+      toast.error("Something bad happen");
+    }
+    toast.success("Successfully Subscribe");
+  };
   return (
     <>
       <section>
@@ -31,8 +46,12 @@ function Subscribe() {
                     className="flex-grow py-3 px-4 mr-4 text-xs rounded leading-loose"
                     type="email"
                     placeholder="example@shuffle.dev"
+                    onChange={(e) => setEmail(e.target.value)}
                   />
-                  <button className="w-auto py-2 px-6 rounded-t-xl rounded-l-xl bg-green-600 hover:bg-green-700 text-gray-50 font-bold leading-loose transition duration-200">
+                  <button
+                    onClick={handleClick}
+                    className="w-auto py-2 px-6 rounded-t-xl rounded-l-xl bg-green-600 hover:bg-green-700 text-gray-50 font-bold leading-loose transition duration-200"
+                  >
                     Sign Up
                   </button>
                 </div>
@@ -40,6 +59,7 @@ function Subscribe() {
             </div>
           </div>
         </div>
+        <Toaster />
       </section>
     </>
   );

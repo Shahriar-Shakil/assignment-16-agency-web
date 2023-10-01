@@ -5,7 +5,7 @@ import React from "react";
 async function getData() {
   const response = await fetch(process.env.BASE_URL + "api/AllProject");
   if (!response.ok) {
-    throw new Error("Error in BrandList");
+    throw new Error("Error in AllProject");
   }
   return response.json();
 }
